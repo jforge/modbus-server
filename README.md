@@ -1,17 +1,13 @@
 # Quick reference
 
-Maintained by: [Michael Oberdorf IT-Consulting](https://www.oberdorf-itc.de/)
+Source code: [GitHub](https://github.com/jforge/modbus-server)
 
-Source code: [GitHub](https://github.com/cybcon/modbus-server)
-
-Container image: [DockerHub](https://hub.docker.com/r/oitc/modbus-server)
+Container image: [DockerHub](https://hub.docker.com/r/jforge/modbus-server)
 
 # Supported tags and respective `Dockerfile` links
 
-* [`latest`, `1.1.5`](https://github.com/cybcon/modbus-server/blob/v1.1.5/Dockerfile)
-* [`1.1.4`](https://github.com/cybcon/modbus-server/blob/v1.1.4/Dockerfile)
-* [`1.1.3`](https://github.com/cybcon/modbus-server/blob/v1.1.3/Dockerfile)
-* [`1.1.2`](https://github.com/cybcon/modbus-server/blob/v1.1.2/Dockerfile)
+* [`latest`, `1.1.5`](https://github.com/jfirge/modbus-server/blob/v1.1.5/Dockerfile)
+
 
 # What is Modbus TCP Server?
 
@@ -29,13 +25,13 @@ The Modbus specification can be found here: [PDF](https://modbus.org/docs/Modbus
 Step - 1 : Pull the Modbus TCP Server
 
 ```bash
-docker pull oitc/modbus-server
+docker pull jforge/modbus-server
 ```
 
 Step - 2 : Run the Modbus TCP Server
 
 ```bash
-docker run --rm -p 5020:5020 oitc/modbus-server:latest
+docker run --rm -p 5020:5020 jforge/modbus-server:latest
 ```
 
 Step - 3 : Predefine registers
@@ -44,13 +40,13 @@ The default configuration file is configured to initialize every register with a
 To set register values, you need to create your own configuration file.
 
 ```bash
-docker run --rm -p 5020:5020 -v ./server_config.json:/server_config.json oitc/modbus-server:latest -f /server_config.json
+docker run --rm -p 5020:5020 -v ./server_config.json:/server_config.json jforge/modbus-server:latest -f /server_config.json
 ```
 
 or you mount the config file over the default file, then you can skip the file parameter:
 
 ```bash
-docker run --rm -p 5020:5020 -v ./server_config.json:/app/modbus_server.json oitc/modbus-server:latest
+docker run --rm -p 5020:5020 -v ./server_config.json:/app/modbus_server.json jforge/modbus-server:latest
 ```
 
 # Configuration
@@ -148,9 +144,9 @@ Example configuration of pre-defined registers from type "Holding Registers" or 
 
 ## Configuration file examples
 
-- [src/app/modbus_server.json](https://github.com/cybcon/modbus-server/blob/main/src/app/modbus_server.json)
-- [examples/abb_coretec_example.json](https://github.com/cybcon/modbus-server/blob/main/examples/abb_coretec_example.json)
-- [examples/test.json](https://github.com/cybcon/modbus-server/blob/main/examples/test.json)
+- [src/app/modbus_server.json](https://github.com/jforge/modbus-server/blob/main/src/app/modbus_server.json)
+- [examples/abb_coretec_example.json](https://github.com/jforge/modbus-server/blob/main/examples/abb_coretec_example.json)
+- [examples/test.json](https://github.com/jforge/modbus-server/blob/main/examples/test.json)
 
 
 
@@ -162,7 +158,7 @@ version: '3.8'
 services:
   modbus-server:
     container_name: modbus-server
-    image: oitc/modbus-server:latest
+    image: jforge/modbus-server:latest
     restart: always
     command: -f /server_config.json
     ports:
@@ -170,31 +166,3 @@ services:
     volumes:
       - ./server.json:/server_config.json:ro
 ```
-
-# Donate
-I would appreciate a small donation to support the further development of my open source projects.
-
-<a href="https://www.paypal.com/donate/?hosted_button_id=BHGJGGUS6RH44" target="_blank"><img src="https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png" alt="Donate with PayPal" width="200px"></a>
-
-
-# License
-
-Copyright (c) 2020-2023 Michael Oberdorf IT-Consulting
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.

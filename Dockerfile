@@ -1,7 +1,7 @@
 FROM python:3.10.9-alpine3.17
 
-LABEL maintainer="Michael Oberdorf IT-Consulting <info@oberdorf-itc.de>"
-LABEL site.local.vendor="Michael Oberdorf IT-Consulting"
+LABEL maintainer="jforge <github@jforge.de>"
+LABEL site.local.vendor="jforge"
 LABEL site.local.os.main="Linux"
 LABEL site.local.os.dist="Alpine"
 LABEL site.local.os.version="3.17"

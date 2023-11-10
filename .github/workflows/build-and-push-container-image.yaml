@@ -44,4 +44,4 @@ jobs:
           push: true
           context: .
           platforms: linux/amd64, linux/arm64
-          tags: oitc/modbus-server:${{steps.application-version.outputs.tag}},oitc/modbus-server:latest
+          tags: jforge/modbus-server:${{steps.application-version.outputs.tag}},jforge/modbus-server:latest
