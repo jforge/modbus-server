@@ -6,6 +6,9 @@ on:
       - edited
       - synchronize
       - reopened
+  push:
+    branches:
+      - main
   workflow_dispatch:
 jobs:
   container-build:
@@ -39,13 +42,3 @@ jobs:
         with:
           name: container-build
           path: /tmp/container.tar
-  scan:
-    name: Container vulnerability scan
-    needs: container-build
-    uses: jforge/github_workflows/.github/workflows/container-vulnerability-scan.yaml@v1.1.10
-    with:
-      image_name: container-build:test
-      image_artifact_filename: container.tar
-      image_artifact_name: container-build
-      login_dockerhub: false
-      trivy_tag: latest

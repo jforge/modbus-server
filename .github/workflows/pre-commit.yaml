@@ -1,9 +1,0 @@
-name: pre-commit
-on:
-  pull_request:
-  push:
-    branches:
-      - main
-jobs:
-  pre-commit:
-    uses: jforge/github_workflows/.github/workflows/pre-commit.yaml@v1.1.10
